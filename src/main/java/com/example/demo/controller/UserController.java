@@ -18,6 +18,7 @@ public class UserController {
   UserService userService;
   @GetMapping
   public ResponseEntity<List<User>> findAllUser(){
+    System.out.println("Hello Docker..");
     List<User> allUsers = userService.getAllUsers();
     return new ResponseEntity<>(allUsers , HttpStatus.FOUND);
   }
