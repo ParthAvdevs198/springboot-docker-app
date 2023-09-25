@@ -14,9 +14,10 @@
 
 # [START gae_java11_helloworld_yaml]
 service: springboot-user-service
-runtime: java11
+runtime: java17
 env: standard
 instance_class: F4_1G
+
 # env_variables:
 #   PUBSUB_TOPIC: two-print-pdf-service
 #   PUBSUB_VERIFICATION_TOKEN: interlaken
