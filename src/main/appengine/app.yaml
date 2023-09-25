@@ -18,9 +18,9 @@ runtime: java17
 env: standard
 instance_class: F4_1G
 
-# env_variables:
-#   PUBSUB_TOPIC: two-print-pdf-service
-#   PUBSUB_VERIFICATION_TOKEN: interlaken
+#env_variables:
+#  PUBSUB_TOPIC: two-print-pdf-service
+#  PUBSUB_VERIFICATION_TOKEN: interlaken
 # [END gae_java11_helloworld_yaml]
 
 # see https://cloud.google.com/appengine/docs/standard/reference/app-yaml?tab=java
