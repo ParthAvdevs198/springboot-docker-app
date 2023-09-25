@@ -74,5 +74,7 @@ steps:
       - 'app'
       - 'deploy'
       - 'springboot-user-service'
+      - '--image'
+      - 'gcr.io/$PROJECT_ID/springboot-docker-app:$COMMIT_SHA'
     waitFor: ['push-image-to-container-registry']
     id: 'deploy-to-app-engine'

@@ -1,4 +1,4 @@
-# Created at 2023-09-25T15:18:48.193
+# Created at 2023-09-25T15:27:48.290
 Boot Manifest-JAR contains absolute paths in classpath 'E:\parth\simform all data\Downloads\static\target\test-classes'
 Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
 'other' has different root
