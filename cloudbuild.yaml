@@ -1,5 +1,4 @@
 ## [START cloudbuild_basic_config]
-##cloudbuild.yaml file
 #steps:
 #  # Docker Build
 #  - name: 'gcr.io/cloud-builders/docker'
@@ -24,13 +23,14 @@
 #  logging: CLOUD_LOGGING_ONLY
 ## [END cloudbuild_basic_config]
 
+
 steps:
 
   - name: gcr.io/cloud-builders/npm
     args: [ install ]
 
   - name: gcr.io/cloud-builders/npm
-    args: [ run, build, --dev ]
+    args: [ run, build, --prod ]
 
   - name: gcr.io/cloud-builders/gcloud
     args: [ app, deploy, --version=$SHORT_SHA ]
