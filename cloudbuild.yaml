@@ -24,11 +24,23 @@
 ## [END cloudbuild_basic_config]
 
 steps:
-  - name: 'gcr.io/cloud-builders/mvn'
-    args: ['install']
+  # build the container image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '--tag=gcr.io/$PROJECT_ID/spring-boot', '.']
+    args: ['build', '-t', 'gcr.io/klara-comm-nonprod/github.com/parthavdevs198/springboot-docker-app:$COMMIT_SHA', '.']
+  # push the container image to Container Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/klara-comm-nonprod/github.com/parthavdevs198/springboot-docker-app:$COMMIT_SHA']
+  # Deploy container image to Cloud Run
   - name: 'gcr.io/cloud-builders/gcloud'
-    args: [ 'app', 'deploy', '/static/src/main/resources/app.yaml' ]
-    dir: "target"
-images: ['gcr.io/$PROJECT_ID/spring-boot']
+    args:
+      - 'run'
+      - 'deploy'
+      - 'demo-app'
+      - '--image'
+      - 'gcr.io/klara-comm-nonprod/github.com/parthavdevs198/springboot-docker-app:$COMMIT_SHA'
+      - '--region'
+      - 'us-central1'
+      - '--platform'
+      - 'managed'
+images:
+  - 'gcr.io/klara-comm-nonprod/github.com/parthavdevs198/springboot-docker-app:$COMMIT_SHA'
