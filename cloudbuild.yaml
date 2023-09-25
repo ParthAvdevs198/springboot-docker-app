@@ -1,0 +1,17 @@
+# [START cloudbuild_basic_config]
+steps:
+  # Docker Build
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 
+           'us-central1-docker.pkg.dev/klara-comm-nonprod/springboot-registry/my-klara-app:${SHORT_SHA}', 
+           '.']
+
+  # Docker Push
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 
+           'us-central1-docker.pkg.dev/klara-comm-nonprod/springboot-registry/my-klara-app:${SHORT_SHA}']
+
+  #Store images in google artifact registory
+  images:
+    - us-central1-docker.pkg.dev/klara-comm-nonprod/springboot-registry/my-klara-app:${SHORT_SHA}
+# [END cloudbuild_basic_config]
