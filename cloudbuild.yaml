@@ -57,9 +57,7 @@ steps:
     id: 'push-image-to-container-registry'
     waitFor: ['build-image-springboot-docker-app']
   - name: 'gcr.io/cloud-builders/gcloud'
-    args:
-      - 'app'
-      - 'deploy'
+#    args:
 #      - 'run'
 #      - 'deploy'
 #      - 'springboot-app'
@@ -70,5 +68,11 @@ steps:
 #      - '--platform'
 #      - 'managed'
 #      - '--allow-unauthenticated'
+#    waitFor: ['push-image-to-container-registry']
+#    id: 'deploy-to-cloud-run'
+    args:
+      - 'app'
+      - 'deploy'
+      - 'springboot-user-service'
     waitFor: ['push-image-to-container-registry']
-    id: 'deploy-to-cloud-run'
+    id: 'deploy-to-app-engine'
