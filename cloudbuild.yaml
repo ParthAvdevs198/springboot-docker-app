@@ -73,7 +73,5 @@ steps:
     args:
       - 'app'
       - 'deploy'
-      - 'app.yaml'
-      - '--image-url=gcr.io/$PROJECT_ID/springboot-docker-app:$COMMIT_SHA'
     waitFor: ['push-image-to-container-registry']
     id: 'deploy-to-app-engine'

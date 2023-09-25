@@ -17,7 +17,7 @@ public class StaticApplication {
 
 	@GetMapping("/")
 	public String hello() {
-		System.out.println("update service .......");
+		System.out.println("update service and change cloudbuild.yaml file.......");
 		return "Springboot-User-Service!";
 	}
 
