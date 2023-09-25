@@ -14,4 +14,10 @@ steps:
   #Store images in google artifact registory
   images:
     - us-central1-docker.pkg.dev/klara-comm-nonprod/springboot-registry/my-klara-app:${SHORT_SHA}
+
+  # Build logs bucket
+    - name: 'gs://klara-comm-nonprod.appspot.com'
+
+  options:
+    default_logs_bucket_behavior: REGIONAL_USER_OWNED_BUCKET
 # [END cloudbuild_basic_config]
