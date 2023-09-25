@@ -1,4 +1,5 @@
 # [START cloudbuild_basic_config]
+#cloudbuild.yaml file
 steps:
   # Docker Build
   - name: 'gcr.io/cloud-builders/docker'
@@ -12,15 +13,13 @@ steps:
            'us-central1-docker.pkg.dev/klara-comm-nonprod/springboot-registry/my-klara-app:${SHORT_SHA}']
 
   #Store images in google artifact registory
-  images:
-    - us-central1-docker.pkg.dev/klara-comm-nonprod/springboot-registry/my-klara-app:${SHORT_SHA}
+images:
+  - us-central1-docker.pkg.dev/klara-comm-nonprod/springboot-registry/my-klara-app:${SHORT_SHA}
 
-  # Build logs bucket
-    - name: 'gs://klara-comm-nonprod.appspot.com'
+# Build logs bucket
+  - name: 'gs://klara-comm-nonprod.appspot.com'
 
-  options:
-    default_logs_bucket_behavior: REGIONAL_USER_OWNED_BUCKET
-
-  options:
-    logging: CLOUD_LOGGING_ONLY
+options:
+  default_logs_bucket_behavior: REGIONAL_USER_OWNED_BUCKET
+  logging: CLOUD_LOGGING_ONLY
 # [END cloudbuild_basic_config]
