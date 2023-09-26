@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: epost-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: epost-app
+  template:
+    metadata:
+      labels:
+        app: epost-app
+    spec:
+      containers:
+        - name: epost-app
+          image: gcr.io/$PROJECT_ID/epost-hub-deployment-image
+
+          command:
+            - terraform
+            - apply
+
+          ports:
+            - containerPort: 80
+---
+
+
+

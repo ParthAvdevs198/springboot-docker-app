@@ -47,11 +47,11 @@
 
 steps:
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/$PROJECT_ID/springboot-docker-app:latest', '-t', 'gcr.io/$PROJECT_ID/springboot-docker-app:$COMMIT_SHA', '-t', 'gcr.io/$PROJECT_ID/springboot-docker-app:$BUILD_ID', '.']
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/epost-hub-deployment-image:latest', '-t', 'gcr.io/$PROJECT_ID/epost-hub-deployment-image:$COMMIT_SHA', '-t', 'gcr.io/$PROJECT_ID/epost-hub-deployment-image:$BUILD_ID', '.']
     id: 'build-image-springboot-docker-app'
     waitFor: ['-']  # The '-' indicates that this step begins immediately.
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/$PROJECT_ID/springboot-docker-app:$COMMIT_SHA'] #us-central1-docker.pkg.dev/klara-comm-nonprod/springboot-registry
+    args: ['push', 'gcr.io/$PROJECT_ID/epost-hub-deployment-image:$COMMIT_SHA'] #us-central1-docker.pkg.dev/klara-comm-nonprod/springboot-registry
     id: 'push-image-to-container-registry'
     waitFor: ['build-image-springboot-docker-app']
   - name: 'gcr.io/cloud-builders/gcloud'
@@ -62,5 +62,5 @@ steps:
     waitFor: ['push-image-to-container-registry']
     id: 'deploy-to-app-engine'
 
-  - name: 'gcloud pubsub topics create springboot-pub-sub-topics'
-    args: [ 'pubsub', 'topics', 'create', 'springboot-pub-sub-topics' ]
+#  - name: 'gcloud pubsub topics create springboot-pub-sub-topics'
+#    args: [ 'pubsub', 'topics', 'create', 'springboot-pub-sub-topics' ]
