@@ -78,4 +78,4 @@ steps:
     waitFor: ['build-image-springboot-docker-app']
 
   - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['compute', 'deployments', 'create', 'epost-app', '--platform', 'kubernetes', '--config', 'terraform.tf']
+    args: ['deployments', 'create', 'epost-app', '--platform', 'kubernetes', '--config', 'terraform.tf']
