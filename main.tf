@@ -3,11 +3,11 @@ resource "google_container_registry" "registry" {
   location = "EU"
 }
 
-resource "google_storage_bucket" "auto-expire" {
-  name          = "terraform-test-static-bucket"
-  project       = "klara-comm-nonprod"
-  location      = "US"
-  force_destroy = true
-
-  public_access_prevention = "enforced"
-}
+# resource "google_storage_bucket" "auto-expire" {
+#   name          = "terraform-test-static-bucket"
+#   project       = "klara-comm-nonprod"
+#   location      = "US"
+#   force_destroy = true
+#
+#   public_access_prevention = "enforced"
+# }
