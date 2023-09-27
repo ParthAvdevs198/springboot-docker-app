@@ -1,5 +1,4 @@
 resource "google_container_registry" "registry" {
-  name     = "terraform-registry-image"
   project  = "klara-comm-nonprod"
   location = "EU"
 }
