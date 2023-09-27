@@ -107,12 +107,5 @@ steps:
     args:
       - '-c'
       - |
-        if [[ "$BRANCH_NAME" == "main"] ]; then
-          echo "Branch is 'main' , proccessing with terraform apply."
-          terraform apply --auto-approve
-          exit 0
-        else
-          echo "Branch is not 'main' ,skipping terraform apply."
-          exit 0
-        fi
+          terraform apply
 # [END tf-apply]
