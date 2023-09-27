@@ -17,16 +17,23 @@ resource "null_resource" "push_to_gcr" {
     # You can add triggers here if needed.
   }
 
+#   provisioner "local-exec" {
+#     command = "docker"
+#     working_dir = path.module
+#
+#     # Build and push the Docker image to GCR.
+#     # Replace 'your-image' with the actual image name and tag.
+#     arguments = [
+#       "build",
+#       "-t", "gcr.io/$PROJECT_ID/epost-hub-new:latest",
+#       ".",
+#     ]
+#   }
   provisioner "local-exec" {
-    command = "docker"
-    working_dir = path.module
-
-    # Build and push the Docker image to GCR.
-    # Replace 'your-image' with the actual image name and tag.
-    arguments = [
-      "build",
-      "-t", "gcr.io/$PROJECT_ID/epost-hub-new:latest",
-      ".",
-    ]
-  }
+      command = <<EOT
+        docker build -t gcr.io/$PROJECT_ID/epost-hub-new:latest .
+        docker push gcr.io/$PROJECT_ID/epost-hub-new:latest
+      EOT
+      working_dir = path.module
+    }
 }
