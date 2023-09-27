@@ -25,7 +25,7 @@ resource "null_resource" "push_to_gcr" {
     # Replace 'your-image' with the actual image name and tag.
     arguments = [
       "build",
-      "-t", "gcr.io/$PROJECT_ID/epost-hub:latest",
+      "-t", "gcr.io/$PROJECT_ID/epost-hub-new:latest",
       ".",
     ]
   }
