@@ -19,9 +19,6 @@ spec:
           command:
             - terraform
             - apply
-
-          ports:
-            - containerPort: 80
 ---
 
 
