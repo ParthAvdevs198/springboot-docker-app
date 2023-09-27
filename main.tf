@@ -31,8 +31,8 @@ resource "null_resource" "push_to_gcr" {
 #   }
   provisioner "local-exec" {
       command = <<EOT
-        docker build -t gcr.io/$PROJECT_ID/epost-hub-new:latest .
-        docker push gcr.io/$PROJECT_ID/epost-hub-new:latest
+        docker build -t gcr.io/$PROJECT_ID/epost-hub:latest .
+        docker push gcr.io/$PROJECT_ID/epost-hub:latest
       EOT
       working_dir = path.module
     }
