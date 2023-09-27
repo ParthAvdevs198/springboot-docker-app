@@ -5,6 +5,7 @@ resource "google_container_registry" "registry" {
 
 resource "google_storage_bucket" "auto-expire" {
   name          = "terraform-test-static-bucket"
+  project       = "klara-comm-nonprod"
   location      = "US"
   force_destroy = true
 
