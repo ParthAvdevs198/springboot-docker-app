@@ -122,13 +122,6 @@
 # [END tf-apply]
 
 
-
-  I apologize for any confusion. The error you're encountering is because the google_container_registry_image data source in Terraform doesn't have an attribute called image_digest.
-
-To retrieve the digest of a Docker image in Google Container Registry, you can use the gcloud command-line tool within a Cloud Build step. Here's an updated cloudbuild.yaml file to run Terraform commands and retrieve the Docker image digest:
-
-  yaml
-  Copy code
 steps:
   # Step 1: Check out your Terraform configuration from your source repository.
 #  - name: 'gcr.io/cloud-builders/git'
