@@ -56,13 +56,13 @@
 # }
 
 
-resource "google_container_registry_image" "klara-epost-hub" {
-  name = "klara-epost-hub:latest"
+resource "google_container_registry_image" "my_image" {
+  name = "my_image:latest"
   registry = "gcr.io/klara-comm-nonprod/github.com/parthavdevs198/springboot-docker-app"
-  image = "klara-epost-hub:latest"
+  image = "my_image:latest"
   triggers = {
     image_change = {
-      source = "google_container_registry_image.klara-epost-hub"
+      source = "google_container_registry_image.my_image"
     }
   }
 }
