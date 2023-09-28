@@ -3,17 +3,17 @@ steps:
   # Docker Build
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t',
-           'gcr.io/klara-repo/luz-epc-ui:$COMMIT_SHA',
+           'gcr.io/klara-repo/luz-epc-api:$COMMIT_SHA',
            '.']
 
   # Docker Push
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push',
-           'gcr.io/klara-repo/luz-epc-ui:$COMMIT_SHA']
+           'gcr.io/klara-repo/luz-epc-api:$COMMIT_SHA']
 
   #Store images in google container registry
 images:
-  - gcr.io/klara-repo/luz-epc-ui:$COMMIT_SHA
+  - gcr.io/klara-repo/luz-epc-api:$COMMIT_SHA
 #
 ## Build logs bucket
 #  - name: 'gs://klara-comm-nonprod.appspot.com'
