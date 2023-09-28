@@ -55,22 +55,48 @@
 #     }
 # }
 
-
-# resource "google_container_registry_image" "my_image" {
-#   name = "my_image:latest"
+#
+# resource "google_container_registry_image" "nginx" {
+#   name = "klara-epost-hub:latest"
 #   registry = "gcr.io/klara-comm-nonprod/github.com/parthavdevs198/springboot-docker-app"
-#   image = "my_image:latest"
+#   image = "klara-epost-hub:latest"
 #   triggers = {
 #     image_change = {
-#       source = "google_container_registry_image.my_image"
+#       source = "google_container_registry_image.klara-epost-hub"
 #     }
 #   }
 # }
 
-data "google_container_registry_image" "klara-epost-hub" {
-  name = "gcr.io/klara-comm-nonprod/github.com/parthavdevs198/springboot-docker-app"
-}
+# data "google_container_registry_image" "klara-epost-hub" {
+#   name = "gcr.io/klara-comm-nonprod/github.com/parthavdevs198/springboot-docker-app" # Replace with the path to your image in GCR
+# }
+#
+# output "image_digest" {
+#   value = data.google_container_registry_image.klara-epost-hub.demo
+# }
 
-output "image_digest" {
-  value = data.google_container_registry_image.klara-epost-hub.image_digest
-}
+
+# terraform {
+#   required_providers {
+#     docker = {
+#       source = "kreuzwerker/docker"
+#       version = "~> 3.0.1"
+#     }
+#   }
+# }
+#
+# provider "docker" {}
+#
+# resource "docker_image" "nginx" {
+#   name         = "nginx:latest"
+#   keep_locally = false
+# }
+#
+# resource "docker_container" "nginx" {
+#   image = docker_image.nginx.image_id
+#   name  = "tutorial"
+#   ports {
+#     internal = 80
+#     external = 8000
+#   }
+# }

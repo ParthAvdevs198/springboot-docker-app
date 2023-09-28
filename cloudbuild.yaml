@@ -1,19 +1,19 @@
 ## [START cloudbuild_basic_config]
-#steps:
-#  # Docker Build
-#  - name: 'gcr.io/cloud-builders/docker'
-#    args: ['build', '-t',
-#           'us-central1-docker.pkg.dev/klara-comm-nonprod/springboot-registry/my-klara-app:${SHORT_SHA}',
-#           '.']
-#
-#  # Docker Push
-#  - name: 'gcr.io/cloud-builders/docker'
-#    args: ['push',
-#           'us-central1-docker.pkg.dev/klara-comm-nonprod/springboot-registry/my-klara-app:${SHORT_SHA}']
-#
-#  #Store images in google artifact registory
-#images:
-#  - us-central1-docker.pkg.dev/klara-comm-nonprod/springboot-registry/my-klara-app:${SHORT_SHA}
+steps:
+  # Docker Build
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t',
+           'gcr.io/klara-comm-nonprod/epost-hub:${SHORT_SHA}',
+           '.']
+
+  # Docker Push
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push',
+           'gcr.io/klara-comm-nonprod/epost-hub:${SHORT_SHA}']
+
+  #Store images in google container registry
+images:
+  - gcr.io/klara-repo/luz-epc-ui:${SHORT_SHA}
 #
 ## Build logs bucket
 #  - name: 'gs://klara-comm-nonprod.appspot.com'
@@ -70,7 +70,7 @@
 
 
 #test terraform
-#
+
 #steps:
 ##  - name: 'gcr.io/cloud-builders/docker'
 ##    args: [ 'build', '-t', 'gcr.io/$PROJECT_ID/epost-image:latest', '-t', 'gcr.io/$PROJECT_ID/epost-image:$COMMIT_SHA', '-t', 'gcr.io/$PROJECT_ID/epost-image:$BUILD_ID', '.' ]
@@ -121,24 +121,3 @@
 
 # [END tf-apply]
 
-
-steps:
-  # Step 1: Check out your Terraform configuration from your source repository.
-#  - name: 'gcr.io/cloud-builders/git'
-#    args: ['clone', 'https://github.com/your-repo/your-terraform-project', '.']
-
-  # Step 2: Run `terraform init` to initialize the Terraform workspace.
-  - name: 'hashicorp/terraform:1.0.0'
-    args: ['init']
-
-  # Step 3: Run `terraform plan` to preview changes.
-  - name: 'hashicorp/terraform:1.0.0'
-    args: ['plan', '-out', 'tfplan']
-
-  # Step 4: Run `terraform apply` to apply changes.
-  - name: 'hashicorp/terraform:1.0.0'
-    args: ['apply', 'tfplan']
-
-  # Step 5: Retrieve the Docker image digest.
-  - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['container', 'images', 'describe', 'gcr.io/$PROJECT_ID/klara-epost-hub:latest', '--format=value(image_summary.digest)']
