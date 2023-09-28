@@ -56,13 +56,22 @@
 # }
 
 
-resource "google_container_registry_image" "my_image" {
-  name = "my_image:latest"
-  registry = "gcr.io/klara-comm-nonprod/github.com/parthavdevs198/springboot-docker-app"
-  image = "my_image:latest"
-  triggers = {
-    image_change = {
-      source = "google_container_registry_image.my_image"
-    }
-  }
+# resource "google_container_registry_image" "my_image" {
+#   name = "my_image:latest"
+#   registry = "gcr.io/klara-comm-nonprod/github.com/parthavdevs198/springboot-docker-app"
+#   image = "my_image:latest"
+#   triggers = {
+#     image_change = {
+#       source = "google_container_registry_image.my_image"
+#     }
+#   }
+# }
+
+data "google_container_registry_image" "klara-epost-hub" {
+  name = "gcr.io/klara-comm-nonprod/github.com/parthavdevs198/springboot-docker-app" # Replace with the path to your image in GCR
+  format = "JSON"
+}
+
+output "image_digest" {
+  value = data.google_container_registry_image.klara-epost-hub.image_digest
 }
