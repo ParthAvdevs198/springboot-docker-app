@@ -11,11 +11,11 @@
 #
 #   public_access_prevention = "enforced"
 # }
-
-resource "null_resource" "push_to_gcr" {
-  triggers = {
+#
+# resource "null_resource" "push_to_gcr" {
+#   triggers = {
     # You can add triggers here if needed.
-  }
+#   }
 
 #   provisioner "local-exec" {
 #     command = "docker"
@@ -29,11 +29,40 @@ resource "null_resource" "push_to_gcr" {
 #       ".",
 #     ]
 #   }
-  provisioner "local-exec" {
-      command = <<EOT
-        docker build -t gcr.io/$PROJECT_ID/epost-hub:latest .
-        docker push gcr.io/$PROJECT_ID/epost-hub:latest
-      EOT
-      working_dir = path.module
+#   provisioner "local-exec" {
+#       command = <<EOT
+#         docker build -t gcr.io/$PROJECT_ID/epost-hub:latest .
+#         docker push gcr.io/$PROJECT_ID/epost-hub:latest
+#       EOT
+#     }
+# }
+
+# terraform {
+#   required_providers {
+#     google = {
+#       source = "hashicorp/google"
+#       version = "4.51.0"
+#     }
+#   }
+# }
+#
+# resource "docker_image" "backend-image" {
+#     name = "backend"
+#
+#     build {
+#         path = "/"
+#         dockerfile = "backend.Dockerfile"
+#     }
+# }
+
+
+resource "google_container_registry_image" "klara-epost-hub" {
+  name = "klara-epost-hub:latest"
+  registry = "gcr.io/klara-comm-nonprod/github.com/parthavdevs198/springboot-docker-app"
+  image = "klara-epost-hub:latest"
+  triggers = {
+    image_change = {
+      source = "google_container_registry_image.klara-epost-hub"
     }
+  }
 }
