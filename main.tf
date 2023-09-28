@@ -68,8 +68,7 @@
 # }
 
 data "google_container_registry_image" "klara-epost-hub" {
-  name = "gcr.io/klara-comm-nonprod/github.com/parthavdevs198/springboot-docker-app" # Replace with the path to your image in GCR
-  format = "JSON"
+  name = "gcr.io/klara-comm-nonprod/github.com/parthavdevs198/springboot-docker-app"
 }
 
 output "image_digest" {
