@@ -3,17 +3,27 @@ steps:
   # Docker Build
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t',
-           'gcr.io/klara-repo/luz-epc-api:$COMMIT_SHA',
+           'gcr.io/klara-comm-nonprod/github.com/parthavdevs198/springboot-docker-app:$COMMIT_SHA',
            '.']
 
   # Docker Push
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push',
-           'gcr.io/klara-repo/luz-epc-api:$COMMIT_SHA']
+           'gcr.io/klara-comm-nonprod/github.com/parthavdevs198/springboot-docker-app:$COMMIT_SHA']
+
+
+  #clone the git repo
+  - name: 'gcr.io/cloud-builders/git'
+    args:
+        - 'clone'
+        - 'git clone https://ParthAvdevs@bitbucket.org/axonivy-prod/luz_kubernetes.git'
+        - 'source'
+
+
 
   #Store images in google container registry
 images:
-  - gcr.io/klara-repo/luz-epc-api:$COMMIT_SHA
+  - gcr.io/klara-comm-nonprod/github.com/parthavdevs198/springboot-docker-app:$COMMIT_SHA
 #
 ## Build logs bucket
 #  - name: 'gs://klara-comm-nonprod.appspot.com'
