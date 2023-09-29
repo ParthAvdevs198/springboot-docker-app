@@ -16,7 +16,7 @@ steps:
   - name: 'gcr.io/cloud-builders/git'
     args:
         - 'clone'
-        - 'git clone https://ParthAvdevs@bitbucket.org/axonivy-prod/luz_kubernetes.git'
+        - 'git clone git@bitbucket.org:axonivy-prod/luz_kubernetes.git'
         - 'source'
 
 
