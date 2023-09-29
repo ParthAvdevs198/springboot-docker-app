@@ -16,7 +16,7 @@ steps:
   - name: 'gcr.io/cloud-builders/git'
     args:
         - 'clone'
-        - 'https://ParthAvdevs@bitbucket.org/axonivy-prod/luz_kubernetes.git'
+        - 'https://github.com/ParthAvdevs198/springboot-docker-app.git'
         - 'source'
 
 
