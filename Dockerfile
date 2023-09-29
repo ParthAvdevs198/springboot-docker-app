@@ -40,9 +40,9 @@ ENTRYPOINT ["java" , "-jar" , "static-0.0.1-SNAPSHOT.jar"]
 #	# Install dependencies
 #	apt-get install unzip wget -y
 #
-#################################
+################################
 ## Install Terraform
-#################################
+################################
 #
 ## Download terraform for linux
 #RUN wget --progress=dot:mega https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip
@@ -84,7 +84,7 @@ ENTRYPOINT ["java" , "-jar" , "static-0.0.1-SNAPSHOT.jar"]
 #CMD ["terraform", "--version"]
 
 
-# Use a base image with the necessary tools
+## Use a base image with the necessary tools
 #FROM ubuntu:20.04
 #
 ## Update the package lists and install essential tools
@@ -112,7 +112,7 @@ ENTRYPOINT ["java" , "-jar" , "static-0.0.1-SNAPSHOT.jar"]
 ## Set the default command to start a bash shell
 #CMD ["/bin/bash"]
 #CMD ["terraform" , "--version"]
-
+#
 
 # Update the package lists with the new repository
 #RUN apt-get update
